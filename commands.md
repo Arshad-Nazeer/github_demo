@@ -72,10 +72,23 @@ Undoing changes:-
 case 1: staged changes
 git reset <file name>
 git reset
+-> staged to before add
 
 case 2: committed changes(for one commit)
 git reset HEAD~1
+-> comitted to before add
 
 case 3: committed changes(for many commits)
-git reset <commit hash>
-git reset --hard <commit hash>
+git reset <commit hash> -> committed to specified commit
+git reset --hard <commit hash> -> undo changes from vscode as well
+
+
+view logs:- git log
+
+
+Fork:-
+
+a fork is a new repository that shares code and visibility settings with the original "upstream" repository
+fork is a rough copy
+
+write entire process
