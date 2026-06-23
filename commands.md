@@ -44,3 +44,12 @@ to check branch -> git branch
 to rename branch -> git branch -b "<branch name>"
 to navigate -> git checkout <branch name>
 to delete branch -> git branch -m <branch name>
+
+Merging Code:-
+
+to compare commits, branches, files and more -> git diff <branch name>
+git merge <branch name>
+
+OR
+
+create a PR
