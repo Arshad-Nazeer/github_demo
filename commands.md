@@ -53,3 +53,8 @@ git merge <branch name>
 OR
 
 create a PR
+
+
+Pull Command:-used to fetch and
+
+download content from a remote repo and immediately update local repo to match that content -> git pull origin main
