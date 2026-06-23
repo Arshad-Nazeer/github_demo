@@ -44,3 +44,17 @@ to check branch -> git branch
 to rename branch -> git branch -b "<branch name>"
 to navigate -> git checkout <branch name>
 to delete branch -> git branch -m <branch name>
+
+Merging Code:-
+
+to compare commits, branches, files and more -> git diff <branch name>
+git merge <branch name>
+
+OR
+
+create a PR
+
+
+Pull Command:-used to fetch and
+
+download content from a remote repo and immediately update local repo to match that content -> git pull origin main
