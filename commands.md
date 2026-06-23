@@ -36,3 +36,11 @@ git remote -v
 git branch
 git branch -m main
 git push origin main/git push -u origin main -> to set origin main as default next time we push
+
+
+Branch Commands:-
+
+to check branch -> git branch
+to rename branch -> git branch -b "<branch name>"
+to navigate -> git checkout <branch name>
+to delete branch -> git branch -m <branch name>
