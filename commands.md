@@ -52,7 +52,11 @@ git merge <branch name>
 
 OR
 
-create a PR
+create a PR -> A Pull Request (PR) is a GitHub feature that says:
+
+"I've made some changes in my branch. Please review them and merge them into another branch."
+
+It's called a pull request because you're requesting someone to pull your changes into their branch.
 
 
 Pull Command:-used to fetch and
