@@ -1,94 +1,429 @@
-Configuring Git:-
-git config --global user.name "My name"
+# Git & GitHub Notes
+
+## Configuring Git
+
+```bash
+git config --global user.name "My Name"
 git config --global user.email "someone@gmail.com"
 git config --list
+```
 
-Clone & Status:-
+* `user.name` → Sets your Git username.
+* `user.email` → Sets your Git email.
+* `git config --list` → Displays all Git configurations.
 
-Clone -> Cloning a repository on our local machine -> git clone <link>
+---
 
-Status -> displays the status of the code -> git status
-{
-    untracked: new files that git doesn't track yet,
-    modified: changed,
-    staged: file is ready to be comitted after adding,
-    unmodified: unchangeed
-}
+# Clone & Status
 
-Add & Commit:-
+## Clone
 
-add -> adds new or changed files in your working directory to the git staging area ->  git add <file name>
+Clone a repository to your local machine:
 
-commit ->  it is the record of change ->  git commit -m some message"
+```bash
+git clone <repository-link>
+```
 
+## Status
 
-Push Command:-
+Displays the current status of your repository:
 
-push -> upload local repo content to remote repo -> git push origin main
+```bash
+git status
+```
 
-Init Command:-
+Possible file states:
 
-init -> used to create a new git repo from locally/initialize git in a local repo
+* **Untracked** → New files that Git is not tracking yet.
+* **Modified** → Existing files that have been changed.
+* **Staged** → Files that have been added and are ready to commit.
+* **Unmodified** → Files that have not changed.
 
+---
+
+# Add & Commit
+
+## Add
+
+Adds new or modified files to the staging area:
+
+```bash
+git add <file-name>
+```
+
+Add all files:
+
+```bash
+git add .
+```
+
+## Commit
+
+Records the staged changes in the repository history:
+
+```bash
+git commit -m "Commit message"
+```
+
+---
+
+# Push
+
+Uploads local commits to a remote repository:
+
+```bash
+git push origin main
+```
+
+* `origin` → Remote repository alias.
+* `main` → Branch being pushed.
+
+Set the upstream branch:
+
+```bash
+git push -u origin main
+-u sets origin main to default therefore wont have to type it again and again, git push will suffice
+```
+
+After this, future pushes can often be done using:
+
+```bash
+git push
+```
+
+---
+
+# Initialize a Repository
+
+Create a new Git repository locally:
+
+```bash
 git init
-git remote add origin <link>
+```
+
+Connect it to GitHub:
+
+```bash
+git remote add origin <repository-link>
 git remote -v
+```
+
+Rename current branch to main:
+
+```bash
+git branch -M main
+```
+
+Push for the first time:
+
+```bash
+git push -u origin main
+```
+
+---
+
+# Branch Commands
+
+View branches:
+
+```bash
 git branch
-git branch -m main
-git push origin main/git push -u origin main -> to set origin main as default next time we push
+```
 
+Create a new branch:
 
-Branch Commands:-
+```bash
+git branch <branch-name>
+```
 
-to check branch -> git branch
-to rename branch -> git branch -b "<branch name>"
-to navigate -> git checkout <branch name>
-to delete branch -> git branch -m <branch name>
+or
 
-Merging Code:-
+```bash
+git checkout -b <branch-name>
+```
 
-to compare commits, branches, files and more -> git diff <branch name>
-git merge <branch name>  
-(The rule is: git merge X means "merge branch X into my CURRENT branch.")
+or
 
-OR
+```bash
+git switch -c <branch-name>
+```
 
-create a PR -> A Pull Request (PR) is a GitHub feature that says:
+Switch branches:
 
-"I've made some changes in my branch. Please review them and merge them into another branch."
+```bash
+git checkout <branch-name>
+```
 
-It's called a pull request because you're requesting someone to pull your changes into their branch.
+or
 
+```bash
+git switch <branch-name>
+```
 
-Pull Command:-used to fetch and
-download content from a remote repo and immediately update local repo to match that content -> git pull origin main
+Rename current branch:
 
-Resolving Merge Cnflicts:-
-an event that takes place whengit is unable to automatically resolve differences in code between two commits
+```bash
+git branch -m <new-branch-name>
+```
 
+Delete a branch:
 
-Undoing changes:-
+```bash
+git branch -d <branch-name>
+```
 
-case 1: staged changes
-git reset <file name>
+---
+
+# Comparing Changes
+
+Compare your current branch with another branch:
+
+```bash
+git diff <branch-name>
+```
+
+Examples:
+
+```bash
+git diff main
+git diff feature
+```
+
+---
+
+# Merging Code
+
+Merge another branch into the current branch:
+
+```bash
+git merge <branch-name>
+```
+
+Important Rule:
+
+> `git merge X` means "merge branch X into the branch I am currently on."
+
+Example:
+
+```bash
+git switch main
+git merge feature
+```
+
+This merges `feature` into `main`.
+
+---
+
+# Pull Requests (PR)
+
+A Pull Request (PR) is a GitHub feature that allows you to request that your changes be reviewed and merged into another branch.
+
+Typical workflow:
+
+```text
+Create Branch
+      ↓
+Make Changes
+      ↓
+Commit
+      ↓
+Push
+      ↓
+Open Pull Request
+      ↓
+Review
+      ↓
+Merge
+```
+
+PRs are commonly used in team projects and open-source development.
+
+---
+
+# Pull
+
+Fetches and downloads content from a remote repository and immediately updates the local branch:
+
+```bash
+git pull origin main
+```
+
+Equivalent to:
+
+```bash
+git fetch
+git merge
+```
+
+---
+
+# Merge Conflicts
+
+A merge conflict occurs when Git cannot automatically determine which changes should be kept while merging.
+
+Git will ask you to manually resolve the conflicting code before completing the merge.
+
+---
+
+# Undoing Changes
+
+## Case 1: Undo Staged Changes
+
+Remove files from the staging area:
+
+```bash
+git reset <file-name>
+```
+
+Remove all staged files:
+
+```bash
 git reset
--> staged to before add
+```
 
-case 2: committed changes(for one commit)
+---
+
+## Case 2: Undo the Last Commit
+
+```bash
 git reset HEAD~1
--> comitted to before add
+```
 
-case 3: committed changes(for many commits)
-git reset <commit hash> -> committed to specified commit
-git reset --hard <commit hash> -> undo changes from vscode as well
+Moves back one commit while keeping file changes.
 
+---
 
-view logs:- git log
+## Case 3: Undo Multiple Commits
 
+Reset to a specific commit:
 
-Fork:-
+```bash
+git reset <commit-hash>
+```
 
-a fork is a new repository that shares code and visibility settings with the original "upstream" repository
-fork is a rough copy
+Discard all changes and reset completely:
 
-write entire process
+```bash
+git reset --hard <commit-hash>
+```
+
+Warning: `--hard` permanently removes uncommitted changes.
+
+---
+
+# View Commit History
+
+View commit logs:
+
+```bash
+git log
+```
+
+Compact view:
+
+```bash
+git log --oneline
+```
+
+---
+
+# Fork
+
+A fork is a copy of another user's repository created under your own GitHub account.
+
+Purpose:
+
+* Experiment without affecting the original project.
+* Contribute to open-source projects.
+* Maintain your own version of a project.
+
+Typical fork workflow:
+
+```text
+Original Repository
+        ↓
+       Fork
+        ↓
+      Clone
+        ↓
+   Create Branch
+        ↓
+   Make Changes
+        ↓
+      Commit
+        ↓
+       Push
+        ↓
+  Pull Request
+        ↓
+      Merge
+```
+
+Remote naming convention:
+
+```text
+origin   → Your fork
+upstream → Original repository
+```
+
+Example:
+
+```bash
+git remote add upstream <original-repository-link>
+```
+
+---
+
+# Contributors
+
+A contributor is anyone whose changes have been merged into a repository.
+
+Contributions can include:
+
+* Bug fixes
+* New features
+* Documentation updates
+* README improvements
+* Tests
+* Code refactoring
+* Translations
+
+Typical contribution process:
+
+```text
+Fork
+ ↓
+Branch
+ ↓
+Commit
+ ↓
+Push
+ ↓
+Pull Request
+ ↓
+Merge
+```
+
+Once your Pull Request is merged, you become a contributor to that repository.
+
+---
+
+# Useful Workflow
+
+```bash
+git status
+git add .
+git commit -m "Meaningful message"
+git push
+```
+
+For collaborative projects:
+
+```bash
+git switch -c feature-branch
+git add .
+git commit -m "Added feature"
+git push origin feature-branch
+```
+
+Then open a Pull Request on GitHub.
