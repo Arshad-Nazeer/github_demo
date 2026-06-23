@@ -60,5 +60,7 @@ It's called a pull request because you're requesting someone to pull your change
 
 
 Pull Command:-used to fetch and
-
 download content from a remote repo and immediately update local repo to match that content -> git pull origin main
+
+Resolving Merge Cnflicts:-
+an event that takes place whengit is unable to automatically resolve differences in code between two commits
