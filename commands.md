@@ -427,3 +427,161 @@ git push origin feature-branch
 ```
 
 Then open a Pull Request on GitHub.
+
+
+# Git Fetch
+
+Downloads the latest changes from a remote repository **without merging them** into the current branch.
+
+## Syntax
+
+```bash
+git fetch <alias>
+```
+
+## Example
+
+Current state:
+
+```text
+GitHub (origin/main)
+A --- B --- C --- D
+
+Local main
+A --- B --- C
+```
+
+Download new changes:
+
+```bash
+git fetch origin
+```
+
+Git now knows about commit `D`, but your local branch remains unchanged.
+
+View the changes:
+
+```bash
+git log origin/main --oneline
+git diff main origin/main
+```
+
+Merge when ready:
+
+```bash
+git merge origin/main
+```
+
+## Memory Trick
+
+```text
+fetch = download only
+pull  = download + merge
+```
+
+---
+
+# Git Rebase
+
+Reapplies the current branch's commits on top of another branch, creating a cleaner linear history.
+
+## Syntax
+
+```bash
+git rebase <branch>
+```
+
+## Example
+
+Before:
+
+```text
+A --- B --- C  main
+      \
+       D --- E  feature
+```
+
+Run:
+
+```bash
+git switch feature
+git rebase main
+```
+
+After:
+
+```text
+A --- B --- C --- D' --- E'  feature
+```
+
+Git moves the feature commits to the tip of `main`.
+
+## Memory Trick
+
+```text
+merge  = combine histories
+rebase = move my commits on top
+```
+
+---
+
+# Git Stash
+
+Temporarily saves uncommitted changes and restores the working directory to a clean state.
+
+## Syntax
+
+```bash
+git stash
+```
+
+## Example
+
+You are working on:
+
+```text
+commands.md
+index.html
+```
+
+but need to switch branches.
+
+Save your work:
+
+```bash
+git stash
+```
+
+Switch branches:
+
+```bash
+git switch main
+```
+
+Restore your work later:
+
+```bash
+git switch feature
+git stash pop
+```
+
+Your changes return exactly as they were before.
+
+## Useful Commands
+
+```bash
+git stash
+git stash list
+git stash apply
+git stash pop
+git stash drop
+git stash clear
+```
+
+## Memory Trick
+
+```text
+commit = save permanently
+
+stash = save temporarily
+```
