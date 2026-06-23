@@ -48,7 +48,8 @@ to delete branch -> git branch -m <branch name>
 Merging Code:-
 
 to compare commits, branches, files and more -> git diff <branch name>
-git merge <branch name>
+git merge <branch name>  
+(The rule is: git merge X means "merge branch X into my CURRENT branch.")
 
 OR
 
@@ -64,3 +65,17 @@ download content from a remote repo and immediately update local repo to match t
 
 Resolving Merge Cnflicts:-
 an event that takes place whengit is unable to automatically resolve differences in code between two commits
+
+
+Undoing changes:-
+
+case 1: staged changes
+git reset <file name>
+git reset
+
+case 2: committed changes(for one commit)
+git reset HEAD~1
+
+case 3: committed changes(for many commits)
+git reset <commit hash>
+git reset --hard <commit hash>
